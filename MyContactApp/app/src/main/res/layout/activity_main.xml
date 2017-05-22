@@ -4,76 +4,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.soumyakalluri.mycontactapp.MainActivity">
+    tools:context="com.example.soumyakalluri.mycontactapp.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <Button
         android:id="@+id/button_addData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="addData"
         android:text="Add Data"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="386dp" />
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/editText_search"
+        android:layout_marginStart="19dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_search" />
 
     <Button
-        android:id="@+id/VIEW CONTACTS"
+        android:id="@+id/button_viewContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="viewData"
         android:text="View Contacts"
-        tools:layout_editor_absoluteX="208dp"
-        tools:layout_editor_absoluteY="386dp" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/button_search"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintRight_toRightOf="@+id/button_search"
+        android:layout_marginBottom="13dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="69dp" />
+        android:layout_marginStart="47dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_name"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <EditText
         android:id="@+id/editText_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="41dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="59dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="59dp" />
+        android:inputType="textCapWords|textPersonName"
+        app:layout_constraintLeft_toRightOf="@+id/textView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <EditText
         android:id="@+id/editText_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Address"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="234dp" />
+        android:inputType="textCapWords|textPostalAddress"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_number"
+        app:layout_constraintRight_toRightOf="@+id/editText_number"
+        app:layout_constraintTop_toBottomOf="@+id/editText_number"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <EditText
         android:id="@+id/editText_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
         android:ems="10"
-        android:inputType="phone"
-        android:text="Phone Number"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="147dp" />
+        android:inputType="number|phone"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_name"
+        app:layout_constraintRight_toRightOf="@+id/editText_name"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="161dp" />
+        app:layout_constraintRight_toLeftOf="@+id/editText_number"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="11dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_number"
+        tools:layout_constraintBaseline_creator="1" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="247dp" />
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="47dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_address"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Relation"
+        app:layout_constraintRight_toLeftOf="@+id/editText_relation"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="37dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_relation"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_relation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="@+id/editText_address"
+        app:layout_constraintRight_toRightOf="@+id/editText_address"
+        app:layout_constraintTop_toBottomOf="@+id/editText_address"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <EditText
+        android:id="@+id/editText_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        android:text="Search all contacts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/button_search"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="search"
+        android:text="Search"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="26dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_search"
+        tools:layout_constraintBaseline_creator="1" />
 
 </android.support.constraint.ConstraintLayout>

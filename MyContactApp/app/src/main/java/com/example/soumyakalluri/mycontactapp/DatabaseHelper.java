@@ -14,10 +14,10 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "Contact.db";
     public static final String TABLE_NAME = "contact_table";
-    public static final String COL_1 = "ID";
-    public static final String COL_2 = "NAME";
-    public static final String COL_3 = "NUMBER";
-    public static final String COL_4 = "ADDRESS";
+    public static final String COL_1 = "NAME";
+    public static final String COL_2 = "NUMBER";
+    public static final String COL_3 = "ADDRESS";
+    public static final String COL_4 = "RELATION";
 
     public DatabaseHelper (Context context)
     {
@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID_INTEGER_PRIMARY_KEY_AUTOINCREMENT, NAME TEXT, NUMBER TEXT, ADDRESS TEXt)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, NUMBER TEXT, ADDRESS TEXT, RELATION TEXT)");
     }
 
     @Override
@@ -39,13 +39,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean insertData(String name, String number, String address)
+    public boolean insertData(String name, String number, String address, String relation)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, name);
-        contentValues.put(COL_3, number);
-        contentValues.put(COL_4, address);
+        contentValues.put(COL_1, name);
+        contentValues.put(COL_2, number);
+        contentValues.put(COL_3, address);
+        contentValues.put(COL_4, relation);
         Log.d("MyContact", "DatabaseHelper: Set up contentValues");
 
         long result = db.insert(TABLE_NAME, null, contentValues);

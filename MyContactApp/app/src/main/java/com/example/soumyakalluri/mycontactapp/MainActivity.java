@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editName;
     EditText editNumber;
     EditText editAddress;
+    EditText editRelation;
+    EditText editSearch;
     Button btnAddData;
     Button viewContacts;
 
@@ -32,19 +34,23 @@ public class MainActivity extends AppCompatActivity {
         editName = (EditText)findViewById(R.id.editText_name);
         editNumber = (EditText)findViewById(R.id.editText_number);
         editAddress = (EditText)findViewById(R.id.editText_address);
+        editRelation = (EditText)findViewById(R.id.editText_relation);
+        editSearch = (EditText)findViewById(R.id.editText_search);
 
         //btnAddData = (Button)findViewById(R.id.button_addData);
+        //viewContacts = (Button)findViewById(R.id.button_viewContacts);
     }
 
     public void addData(View v)
     {
         boolean isInserted = myDb.insertData(editName.getText().toString(),
                 editNumber.getText().toString(),
-                editAddress.getText().toString());
+                editAddress.getText().toString(),
+                editRelation.getText().toString());
         Context context = getApplicationContext();
         CharSequence text;
 
-        if (isInserted == true)
+        if (isInserted)
         {
             Log.d("MyContact","Success inserting data");
             //insert toast message here...
@@ -75,10 +81,16 @@ public class MainActivity extends AppCompatActivity {
 
         StringBuffer buffer = new StringBuffer();
         //set up a loop with the Cursor (res) using moveToNext
-
+        while (res.moveToNext()) {
             //append each COL to the buffer
-            // display message using ShowMessage
-        showMessage("Data", buffer.toString());
+            //display message using ShowMessage
+            for (int i=0; i<res.getColumnCount(); i++)
+            {
+                buffer.append(res.getColumnName(i) + ": " + res.getString(i) + "\n");
+            }
+            buffer.append("\n");
+        }
+        showMessage("Contacts", buffer.toString());
     }
 
     private void showMessage(String title, String message)
@@ -89,4 +101,34 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(message);
         builder.show();
     }
+
+    public void search(View v)
+    {
+        Cursor res = myDb.getAllData();
+        Context context = getApplicationContext();
+
+        if (res.getCount()==0)
+        {
+            showMessage("Error", "No data is found in the database");
+            return;
+        }
+        StringBuffer buffer = new StringBuffer();
+        while (res.moveToNext())
+        {
+            if (res.getString(1).toUpperCase().equals(editSearch.getText().toString().toUpperCase()))
+            {
+                for (int i=0; i<res.getColumnCount(); i++)
+                {
+                    buffer.append(res.getColumnName(i)+": "+res.getString(i)+"\n");
+                }
+                showMessage("Contact", buffer.toString());
+            }
+
+            else
+            {
+                showMessage("Contact not found", "Check your spelling or try another search.");
+            }
+        }
+    }
+
 }
